@@ -1,0 +1,61 @@
+ 
+  .scrollable_container {
+    position: fixed;
+    width: 100%;
+
+    background: rgb(46, 46, 46);
+  }
+  
+  .scrollable{
+    position: relative;
+    min-height: calc(100vh * 2);
+    background: #333446;
+  }
+  
+ 
+  div#item_center,
+  div#item_front,
+  div#item_back {
+  
+    position: absolute;
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  div#item_center {
+    top: 30vh;
+    z-index: 1;
+  }
+  
+  div#item_back {
+    top: 20vh;
+    z-index: 0;
+  }
+  
+  div#item_front {
+    top: 40vh;
+    z-index: 2;
+  }
+  
+  div#item_back img {
+    height: 20em;
+   
+  }
+  div#item_front img {
+    height: 10em;
+    top: 60px;
+    position: relative;
+    opacity: .8;
+   
+  }
+  
+  /********************************/
+  
+  
+
+  

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coda:wght@400;800&display=swap');
+
+div.lorem_container{
+    padding: 5rem 2rem;
+    display: grid;
+    justify-content: flex-start;
+    align-items: center;
+    grid-template-columns: 1fr;
+    column-gap: 1rem;
+    row-gap: 2rem;
+    width: 100%;
+}
+
+h2.lorem{
+    font-family: "Goldman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}
+
+p.lorem{
+    font-family: "Coda", system-ui;
+  font-weight: 400;
+  font-style: normal;
+    text-align: center;
+}
+
+@media screen and (min-width:1024px){
+
+    div.lorem_container{
+        grid-template-columns: repeat(3,1fr);
+        flex-direction: row;
+        align-items: flex-start;
+       
+    }
+    
+    h2.lorem{
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+   
+    p.lorem{
+        
+        text-align: left;
+    }
+}
