@@ -6,22 +6,25 @@ import Stickerz from '@components/Stickerz';*/
  /*  import Tutorial1 from '@components/Tutorial1';  
  import Tutorial2 from '@components/Tutorial2';   */
 
+ 
 function App(){
 
     const renderTutorialOne = async()=>{
-       try{
+        try{
+        console.log(1)
+         await render(document.getElementById('container-tutorial'),html.node``)
+          let Tutorial1 = await import('@components/Tutorial1') ; 
+         await render(document.getElementById('container-tutorial'),Tutorial1.default)
+         console.log(2)
+        }catch(err){console.log(err.message)}
+     }
     
-        render(document.getElementById('container-tutorial'),html.node``)
-         const Tutorial1 = await import('@components/Tutorial1') ; 
-        render(document.getElementById('container-tutorial'),Tutorial1.default)
-       }catch(err){console.log(err.message)}
-    }
-
-    const renderTutorialTwo = async()=>{
-        render(document.getElementById('container-tutorial'),html.node``)
-       const Tutorial2 = await import('@components/Tutorial2') ; 
-        render(document.getElementById('container-tutorial'),Tutorial2.default)
-    }
+     const renderTutorialTwo = async()=>{
+         await  render(document.getElementById('container-tutorial'),html.node``)
+        const Tutorial2 = await import('@components/Tutorial2') ; 
+         await render(document.getElementById('container-tutorial'),Tutorial2.default)
+     }
+    
 
 
     return (

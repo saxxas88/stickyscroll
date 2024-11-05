@@ -1,18 +1,18 @@
-import "@style/tutorial2.css";
+
 import { html } from "lighterhtml";
 
 import itemCenter from "@assets/vite.svg";
 import itemBack from "@assets/lightning-back.png";
 import itemFront from "@assets/lightning-front.png";
 import LoremIpsum from '@components/LoremIpsum';
-
+import "@style/tutorial2.css"
 import { useEffect } from "@utils/screwdriver";
 
 function Sticker(){
+    
     useEffect('.scrollable_container')
-    .then(res=>{
-        res && onLoad()
-      
+    .then( res=>{
+        res && onLoad() 
     })
     .catch(err=>false)
 
@@ -34,27 +34,14 @@ const onLoad = () => {
   const stickyBack = document.querySelector("#item_back");
   const stickyFront = document.querySelector("#item_front");
 
-  let current = 0  ;
-  let target = 0;
-  const ease = 0.35;
-
-  const lerp = (start, end, t) => {
-    return start * (1 - t) + end * t;
-  };
-
   // min height body
   const init = () => {
       document.body.style.minHeight = `${container_scrollables.getBoundingClientRect().height}px`;      
   };
 
   const smoothScroll = () => {
-
-    target = window.scrollY ; 
-  
-    current = lerp(current, target, ease);
-   /*  container_scrollables.style.transform = `translate3d(0, ${-window.scrollY}px,0)`; */
     stickirize();
-    window.requestAnimationFrame(smoothScroll);
+    //window.requestAnimationFrame(smoothScroll);
   };
 
   const stickirize = () => {
@@ -76,9 +63,7 @@ const onLoad = () => {
       let offsetTopElemFront =
       window.innerHeight * currentOffsetElemFront + offsetTopContainer;
 
-        const limitHeight = scrollable.getBoundingClientRect().height  - window.innerHeight;
-    /*  const limitHeight = scrollable.getBoundingClientRect().height - scrollable.offsetTop; */
-   
+        const limitHeight = scrollable.getBoundingClientRect().height  - window.innerHeight;   
       //scroll normale
     if (window.scrollY > 0 && window.scrollY < offsetTopElemCenter) {
    
@@ -133,13 +118,15 @@ const onLoad = () => {
 
 
   init();
-  smoothScroll();
+  window.onscroll=smoothScroll;
 };
 
 return html.node`
-      <section class="custom"></section>
+
+      <section></section>
      
-    <div class="scrollable_container">
+        <div id="tutorial2">
+            <div class="scrollable_container">
    
             <div class="scrollable">
                 ${LoremIpsum()}
@@ -163,6 +150,7 @@ return html.node`
             </div>
             <section></section>
                 <section></section>
+         </div>
     </div>
    
 `;

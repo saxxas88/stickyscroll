@@ -1,102 +1,57 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html,body{
-    overscroll-behavior: none;
-}
-.scrollable_container_copy {
-  /* position: fixed; */
-position:relative;
+#tutorial2 .scrollable_container {
+  position: sticky;
   width: 100%;
-   min-height: 100vh; 
-  top:0;
+  min-height: 100vh;
+  top: 0;
   background: rgb(46, 46, 46);
-  z-index: -100;
 }
-  .scrollable_container {
-  
-  position: sticky; 
-    width: 100%;
-     min-height: 100vh; 
-    top:0; 
-    background: rgb(46, 46, 46);
-  }
-  
-  .scrollable{
-   
-    top: 0;
-    min-height: 100vh;
-    background: #333446;
-  }
-  
 
-  section{
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    background-color: #4d263b;
-    border: 1px soldi #ffffff;
-  }
+#tutorial2 .scrollable {
+  top: 0;
+  min-height: 100vh;
+  background: #333446;
+}
 
-  section.custom{
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    background-color: #a83f77;
-    border: 1px soldi #ffffff;
-  }
+#tutorial2 div#item_center,
+#tutorial2 div#item_back,
+#tutorial2 div#item_front {
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  div#item_center,
-  div#item_back,
-  div#item_front {
-    position: absolute;
-    width: 100%;
-    margin: 0 auto;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border: 2px solid fuchsia; */
-  }
-  
-  
-  div#item_center {
-    top: 100vh;
-    z-index: 2;
-  }
-  div#item_front {
-    top: 180vh;
-    z-index: 3;
-  }
-  div#item_back {
-    top: 140vh;
-    z-index: 1;
-  }
+#tutorial2 div#item_center {
+  top: 100vh;
+  z-index: 2;
+}
+#tutorial2 div#item_front {
+  top: 180vh;
+  z-index: 3;
+}
+#tutorial2 div#item_back {
+  top: 140vh;
+  z-index: 1;
+}
 
-  div#item_center img{
-    width: 130px;
-    position: relative;
-  }
-  div#item_back img{
-    width: 300px;
-    top: -20px;
-    opacity: .85;
-    position: relative;
-  }
-  div#item_front img{
-    width: 130px;
-    top: 60px;
-    opacity: .85;
-    position: relative;
-  }
-  
- 
-  
-  /********************************/
-  
-  
+#tutorial2 div#item_center img {
+  width: 130px;
+  position: relative;
+}
+#tutorial2 div#item_back img {
+  width: 300px;
+  top: -20px;
+  opacity: 0.85;
+  position: relative;
+}
+#tutorial2 div#item_front img {
+  width: 130px;
+  top: 60px;
+  opacity: 0.85;
+  position: relative;
+}
 
-  
+/********************************/
