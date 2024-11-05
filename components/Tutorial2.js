@@ -8,7 +8,7 @@ import LoremIpsum from '@components/LoremIpsum';
 
 import { useEffect } from "@utils/screwdriver";
 
-
+function Sticker(){
     useEffect('.scrollable_container')
     .then(res=>{
         res && onLoad()
@@ -21,33 +21,12 @@ function clickPrevent(ev) {
   console.log(ev?.currentTarget?.dataset?.name);
 }
 
-const Sticker = html.node`
-      <section></section>
-      <section></section>
-    <div class="scrollable_container">
-   
-            <div class="scrollable">
-                ${LoremIpsum()}
-                ${LoremIpsum()}
-              
-                <div id="item_center">
-                    <a href="#" data-name="link" onclick=${clickPrevent}>
-                        <img src="${itemCenter}" class="logo" alt="Center" />
-                    </a>
-                </div>
-               
-                
-            </div>
-            
-    </div>
-    <section></section>
-    <section></section>
-`;
+
 
 const onLoad = () => {
- 
-   const container_scrollables =  document.querySelector('.scrollable_container');
   
+   const container_scrollables =  document.querySelector('.scrollable_container');
+ 
   const scrollable = document.querySelector(".scrollable");
 
   // elements
@@ -71,7 +50,9 @@ const onLoad = () => {
   const smoothScroll = () => {
 
     target = window.scrollY ; 
+  
     current = lerp(current, target, ease);
+   /*  container_scrollables.style.transform = `translate3d(0, ${-window.scrollY}px,0)`; */
     stickirize();
     window.requestAnimationFrame(smoothScroll);
   };
@@ -81,57 +62,73 @@ const onLoad = () => {
     const offsetTopContainer = container_scrollables.offsetTop;
 
     const elem_center = stickyCenter;
-   /*  const elem_back = stickyBack;
-    const elem_front = stickyFront; */
+    const elem_back = stickyBack;
+    const elem_front = stickyFront;
 
     const currentOffsetElemCenter = elem_center.offsetTop / window.innerHeight;
-   /*  const currentOffsetElemBack = elem_back.offsetTop / window.innerHeight;
-    const currentOffsetElemFront = elem_front.offsetTop / window.innerHeight; */
+    const currentOffsetElemBack = elem_back.offsetTop / window.innerHeight;
+    const currentOffsetElemFront = elem_front.offsetTop / window.innerHeight;
 
     let offsetTopElemCenter =
       window.innerHeight * currentOffsetElemCenter + offsetTopContainer;
-     /*  let offsetTopElemBack =
+      let offsetTopElemBack =
       window.innerHeight * currentOffsetElemBack + offsetTopContainer;
       let offsetTopElemFront =
-      window.innerHeight * currentOffsetElemFront + offsetTopContainer; */
+      window.innerHeight * currentOffsetElemFront + offsetTopContainer;
 
-       /*  const limitHeight = scrollable.getBoundingClientRect().height  - window.innerHeight; */
-     const limitHeight = scrollable.getBoundingClientRect().height - scrollable.offsetTop;
+        const limitHeight = scrollable.getBoundingClientRect().height  - window.innerHeight;
+    /*  const limitHeight = scrollable.getBoundingClientRect().height - scrollable.offsetTop; */
    
       //scroll normale
-    if (window.scrollY > 0 && window.scrollY < offsetTopElemCenter) {    
-      /*   elem_center.classList.remove('sticky'); 
-        elem_back.classList.remove('sticky'); 
-        elem_front.classList.remove('sticky');  */
+    if (window.scrollY > 0 && window.scrollY < offsetTopElemCenter) {
+   
+    
+    elem_center.style.transform = `translate3d(0,${
+      0
+    }px, 0)`; 
+    elem_back.style.transform = `translate3d(0,${
+      0
+    }px, 0)`; 
+    elem_front.style.transform = `translate3d(0,${
+      0
+    }px, 0)`; 
     } 
    
 
     //scroll sticky
 
+     //first elem sticky
+     if (
+      window.scrollY >= offsetTopElemBack && (window.scrollY <=  limitHeight)
+    ) {
+       elem_back.style.transform = `translate3d(0,${
+        Number(window.scrollY - offsetTopElemBack).toFixed(2)
+      }px, 0)`;  
+ 
+    } 
 
     //second elem sticky
     if (
-      window.scrollY >= offsetTopElemCenter   && window.scrollY <= offsetTopElemCenter + limitHeight   && !(window.scrollY > limitHeight) && !elem_center.classList.contains('sticky')
+      window.scrollY >= offsetTopElemCenter  /* && window.scrollY <= offsetTopElemCenter + limitHeight */  && !(window.scrollY > limitHeight)
     ) {
-        elem_center.style.top=elem_center.getBoundingClientRect().top+'px'
-       elem_center.classList.add('sticky'); 
-       
+       elem_center.style.transform = `translate3d(0,${
+        Number(window.scrollY - offsetTopElemCenter).toFixed(2)
+      }px, 0)`; 
+      
+     
     }
 
-   
-
-      if (window.scrollY > 0 && window.scrollY < offsetTopElemCenter) {
-        console.log('a',window.scrollY,offsetTopElemCenter)
-      }
+    //third elem sticky
       if (
-        window.scrollY >= offsetTopElemCenter  /* && !(window.scrollY > limitHeight) */
-      ) 
-      console.log('b',window.scrollY,offsetTopElemCenter)
+        window.scrollY >= offsetTopElemFront /* && window.scrollY <= offsetTopElemFront + limitHeight */ && !(window.scrollY >  limitHeight)
+      ) {
+         elem_front.style.transform = `translate3d(0,${
+          Number(window.scrollY - offsetTopElemFront).toFixed(2)
+        }px, 0)`; 
+       
+      } 
 
-      if (
-        window.scrollY > limitHeight
-      ) 
-      console.log('c')
+      
   };
 
 
@@ -139,4 +136,36 @@ const onLoad = () => {
   smoothScroll();
 };
 
+return html.node`
+      <section class="custom"></section>
+     
+    <div class="scrollable_container">
+   
+            <div class="scrollable">
+                ${LoremIpsum()}
+                ${LoremIpsum()}
+                <div id="item_front">
+                    <a href="#" data-name="link" onclick=${clickPrevent}>
+                        <img src="${itemFront}" class="logo" alt="Front" />
+                    </a>
+                </div>
+                <div id="item_center">
+                    <a href="#" data-name="link" onclick=${clickPrevent}>
+                        <img src="${itemCenter}" class="logo" alt="Center" />
+                    </a>
+                </div>
+                <div id="item_back">
+                    <a href="#" data-name="link" onclick=${clickPrevent}>
+                        <img src="${itemBack}" class="logo" alt="Back" />
+                    </a>
+                </div>
+                
+            </div>
+            <section></section>
+                <section></section>
+    </div>
+   
+`;
+
+}
 export default Sticker;

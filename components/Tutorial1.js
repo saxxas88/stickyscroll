@@ -8,7 +8,7 @@ import LoremIpsum from '@components/LoremIpsum';
 
 import { useEffect } from "@utils/screwdriver";
 
-
+function Sticker(){
     useEffect('.scrollable_container')
     .then(res=>{
         res && onLoad()
@@ -20,37 +20,6 @@ function clickPrevent(ev) {
   ev.preventDefault();
   console.log(ev?.currentTarget?.dataset?.name);
 }
-
-const Sticker = html.node`
-      <section class="custom"></section>
-      <div class="scrollable_container_copy"></div>
-    <div class="scrollable_container">
-   
-            <div class="scrollable">
-                ${LoremIpsum()}
-                ${LoremIpsum()}
-                <div id="item_front">
-                    <a href="#" data-name="link" onclick=${clickPrevent}>
-                        <img src="${itemFront}" class="logo" alt="Front" />
-                    </a>
-                </div>
-                <div id="item_center">
-                    <a href="#" data-name="link" onclick=${clickPrevent}>
-                        <img src="${itemCenter}" class="logo" alt="Center" />
-                    </a>
-                </div>
-                <div id="item_back">
-                    <a href="#" data-name="link" onclick=${clickPrevent}>
-                        <img src="${itemBack}" class="logo" alt="Back" />
-                    </a>
-                </div>
-                
-            </div>
-            <section></section>
-                <section></section>
-    </div>
-   
-`;
 
 const onLoad = () => {
   const container_scrollables_copy =  document.querySelector('.scrollable_container_copy');
@@ -176,4 +145,37 @@ const onLoad = () => {
   smoothScroll();
 };
 
+return  html.node`
+      <section class="custom"></section>
+      <div class="scrollable_container_copy"></div>
+    <div class="scrollable_container">
+   
+            <div class="scrollable">
+                ${LoremIpsum()}
+                ${LoremIpsum()}
+                <div id="item_front">
+                    <a href="#" data-name="link" onclick=${clickPrevent}>
+                        <img src="${itemFront}" class="logo" alt="Front" />
+                    </a>
+                </div>
+                <div id="item_center">
+                    <a href="#" data-name="link" onclick=${clickPrevent}>
+                        <img src="${itemCenter}" class="logo" alt="Center" />
+                    </a>
+                </div>
+                <div id="item_back">
+                    <a href="#" data-name="link" onclick=${clickPrevent}>
+                        <img src="${itemBack}" class="logo" alt="Back" />
+                    </a>
+                </div>
+                
+            </div>
+            <section></section>
+                <section></section>
+    </div>
+   
+`;
+
+
+}
 export default Sticker;

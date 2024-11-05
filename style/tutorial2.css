@@ -7,18 +7,26 @@
 html,body{
     overscroll-behavior: none;
 }
-
+.scrollable_container_copy {
+  /* position: fixed; */
+position:relative;
+  width: 100%;
+   min-height: 100vh; 
+  top:0;
+  background: rgb(46, 46, 46);
+  z-index: -100;
+}
   .scrollable_container {
-    position: relative;
- /*  position: sticky; */
+  
+  position: sticky; 
     width: 100%;
      min-height: 100vh; 
-   /*  top:0; */
+    top:0; 
     background: rgb(46, 46, 46);
   }
   
   .scrollable{
-    position: relative;
+   
     top: 0;
     min-height: 100vh;
     background: #333446;
@@ -56,15 +64,15 @@ html,body{
   
   
   div#item_center {
-    top: 0;
+    top: 100vh;
     z-index: 2;
   }
   div#item_front {
-    top: 0;
+    top: 180vh;
     z-index: 3;
   }
   div#item_back {
-    top: 0;
+    top: 140vh;
     z-index: 1;
   }
 
@@ -80,15 +88,13 @@ html,body{
   }
   div#item_front img{
     width: 130px;
-    top: 0;
+    top: 60px;
     opacity: .85;
     position: relative;
   }
   
  
-  .sticky{
-    position: sticky!important;
-  }
+  
   /********************************/
   
   
