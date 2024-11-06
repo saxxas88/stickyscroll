@@ -1,0 +1,73 @@
+#stickirize_food .scrollable_container_copy {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    top: 0;
+    background: rgb(46, 46, 46);
+    z-index: -100;
+  }
+  #stickirize_food .scrollable_container {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    top:0;
+    background: rgb(46, 46, 46);
+  }
+  
+  #stickirize_food .scrollable {
+    position: relative;
+    top: 0;
+    min-height: 100vh;
+    background: #333446;
+    border: 1px solid #ffffff;
+  }
+  
+  #stickirize_food div.item {
+    position: absolute;
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #stickirize_food div#item_table {
+    top: 100vh;
+    z-index: 1;
+  }
+  #stickirize_food div#item_toast {
+    top: 120vh;
+    z-index: 2;
+  }
+  #stickirize_food div#item_cheese {
+    top: 140vh;
+    z-index: 3;
+  }
+  #stickirize_food div#item_tomato_a {
+    top: 150vh;
+    z-index: 4;
+  }
+  #stickirize_food div#item_tomato_b {
+    top: 160vh;
+    z-index: 5;
+  }
+  #stickirize_food div#item_cucumber_a {
+    top: 170vh;
+    z-index: 6;
+  }
+  #stickirize_food div#item_cucumber_b {
+    top: 180vh;
+    z-index: 7;
+  }
+
+  #stickirize_food .item img {
+    width: clamp(290px,100vw, 600px);
+    position: relative;
+  }
+
+ 
+  
+  
+  /********************************/
+  

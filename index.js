@@ -1,6 +1,7 @@
  import '@style/style.css' 
 import {render} from 'lighterhtml';
 
- import App from './main'; 
+/*  import App from './main';  */
+import Food from '@components/Food';
 
-render(document.getElementById('app'),App)
+render(document.getElementById('app'),Food)

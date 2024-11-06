@@ -11,11 +11,11 @@ function App(){
 
     const renderTutorialOne = async()=>{
         try{
-        console.log(1)
+
          await render(document.getElementById('container-tutorial'),html.node``)
           let Tutorial1 = await import('@components/Tutorial1') ; 
          await render(document.getElementById('container-tutorial'),Tutorial1.default)
-         console.log(2)
+       
         }catch(err){console.log(err.message)}
      }
     
