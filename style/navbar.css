@@ -1,0 +1,18 @@
+nav.food_navbar{
+    margin: 0;
+    padding: 15px;
+    min-height: 150px;
+    background-color: var(--nav) ;
+    color: var(--text);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+nav.food_navbar h2{
+    font-size: clamp(25px,2.5vw,3rem);
+    position: relative;
+    text-align: center;
+}

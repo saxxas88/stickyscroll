@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Coda:wght@400;800&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
 div.lorem_container{
     padding: 5rem 2rem;
     display: grid;
@@ -13,20 +19,25 @@ div.lorem_container{
 }
 
 h2.lorem{
-    font-family: "Goldman", sans-serif;
+   /*  font-family: "Goldman", sans-serif;  */
+  /*  font-family: "Fugaz One", sans-serif; */
+  font-family: "Abril Fatface", sans-serif;
+   font-size: clamp(25px,2.5vw,3rem);
     font-weight: 400;
     font-style: normal;
     text-align: center;
 }
 
 p.lorem{
-    font-family: "Coda", system-ui;
+   /*  font-family: "Coda", system-ui; */
+   font-family: "Architects Daughter", cursive;
   font-weight: 400;
   font-style: normal;
     text-align: center;
+    font-size: clamp(16px,2.5vw,20px);
 }
 
-@media screen and (min-width:1024px){
+@media only screen and (min-width:1024px){
 
     div.lorem_container{
         grid-template-columns: repeat(3,1fr);

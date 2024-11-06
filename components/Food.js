@@ -2,7 +2,7 @@ import { html } from "lighterhtml";
 import "@style/food.css";
 
 
-import itemTable from "@assets/food_parts/table.png";
+import itemTable from "@assets/food_parts/wood_plate.png";
 import itemCheese from "@assets/food_parts/cheese.png";
 import itemToast from "@assets/food_parts/toast.png";
 import itemTomato_a from "@assets/food_parts/tomato_a.png";
@@ -51,7 +51,7 @@ function Sticker() {
 
     let current = 0;
     let target = 0;
-    const ease = 0.35;
+    const ease = 1;
 
     const lerp = (start, end, t) => {
       return start * (1 - t) + end * t;
@@ -93,7 +93,7 @@ function Sticker() {
       target = window.scrollY;
 
       current = lerp(current, target, ease);
-      container_scrollables.style.transform = `translate3d(0, ${-window.scrollY}px,0)`;
+      container_scrollables.style.transform = `translate3d(0, ${-current}px,0)`;
       stickirize();
       window.requestAnimationFrame(smoothScroll);
     };
@@ -104,32 +104,30 @@ function Sticker() {
       //scroll normale
 
       //scroll sticky
-      elements.forEach(elem=>{
-        if (window.scrollY > 0 && window.scrollY < (elem.offsetTop + offsetTopContainer))
-           elem.style.transform = `translate3d(0,${0}px, 0)`;
-      });
-
-      elements.forEach(elem=>{
-        if (
-            window.scrollY >= (elem.offsetTop + offsetTopContainer) &&
-            window.scrollY <= limitHeight
-          ) {
-            elem.style.transform = `translate3d(0,${Number(
-              window.scrollY - (elem.offsetTop + offsetTopContainer)
-            ).toFixed(2)}px, 0)`;
-          }
-      });
      
-    /*   elements.forEach(elem=>{
+
+      elements.forEach((elem,i)=>{
+
+        if (current > 0 && current < (elem.offsetTop + offsetTopContainer))
+            elem.style.transform = `translate3d(0,${0}px, 0)`;
+
         if (
-            window.scrollY > limitHeight
+            current >= (elem.offsetTop + offsetTopContainer) &&
+            current <= limitHeight - i*100
           ) {
             elem.style.transform = `translate3d(0,${Number(
-                window.scrollY + (- offsetTopContainer)
+              current - (elem.offsetTop + offsetTopContainer)
             ).toFixed(2)}px, 0)`;
-        
           }
-      }); */
+
+          /* if (
+            current > elem.offsetTop + offsetTopContainer + (i*100)
+          ) {
+            // ??????
+          } */
+      });
+    
+     
 
     };
 
