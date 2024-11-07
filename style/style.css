@@ -1,10 +1,22 @@
 :root {
-  --text: #1e1e1e;
-  --heading: #EFEFEF;
-  --footer: #323B43;
-  --icon: #66CBB0;
-  --body: #F4FBF2;
-  --nav: #D2C8C2;
+  --eerie_black: #1e1e1e; /* Eeerie black */
+  --davys_gray: #595959; /* Davy's gray */
+  --timberwolf: #D2C8C2; /* Timberwolf */
+  --antiflash_white: #EFEFEF; /* Anti-flash white */
+  --gunmetal: #323B43; /*Gunmetal*/
+  --turquoise: #66CBB0; /* Turquoise */
+  --mint_cream: #F4FBF2; /* Mint cream */
+  --thistle: #E7C8DD; /* Thistle */
+  --pink_lavander: #DBAFC1; /* Pink lavander */
+  --rose_taupe: #86626E; /* Rose taupe */
+  
+  --text: var(--eerie_black); 
+  --text_nav: #ffffff; 
+  --nav: var(--rose_taupe);
+  --heading: var(--antiflash_white);
+  --footer: var(--gunmetal);
+  --icon: var(--turquoise);
+  --body: var(--mint_cream);
 }
 
 *{

@@ -3,7 +3,7 @@ nav.food_navbar{
     padding: 15px;
     min-height: 150px;
     background-color: var(--nav) ;
-    color: var(--text);
+    color: var(--text_nav);
     position: relative;
     display: flex;
     flex-direction: column;

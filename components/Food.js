@@ -24,47 +24,54 @@ function Sticker() {
   .catch((err) => false);
 
  
+  function isMobile() {
+    const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    return regex.test(navigator.userAgent) || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+  }
 
-
-    const onLoadContainer = async()=>{
-
-      window.scrollTo({
-        top: 0,
-        
+  const redrawing = async()=>{
+    window.scrollTo({
+      top: 0
     });
-      document.querySelector('.loading').style.display='block';
-      document.querySelector('#stickirize_food').style.visibility='hidden';
-           
-            await render(document.querySelector('#stickirize_food'),Food);     
-            useEffect("#stickirize_food")
-            .then((res) => {
-              res && onLoad();
-            })
-            .then(()=>{
-              document.querySelector('.loading').style.display='none';
-              document.querySelector('#stickirize_food').style.visibility='visible';
-            })
-            .catch((err) => false);
+    document.querySelector('.loading').style.display='block';
+    document.querySelector('#stickirize_food').style.visibility='hidden';
+         
+    await render(document.querySelector('#stickirize_food'),Food);     
+    useEffect("#stickirize_food")
+    .then((res) => {
+      res && onLoad();
+    })
+    .then(()=>{
+      document.querySelector('.loading').style.display='none';
+      document.querySelector('#stickirize_food').style.visibility='visible';
+    })
+    .catch((err) => false);
+  }
 
-      window.addEventListener('resize',async()=>{
-        document.querySelector('.loading').style.display='block';
-        await render(document.querySelector('#stickirize_food'),html.node``);     
-        document.querySelector('#stickirize_food').style.visibility='hidden';
-              window.scrollTo({
-                  top: 0,
-                  
-              });
-              await render(document.querySelector('#stickirize_food'),Food);     
-              useEffect("#stickirize_food")
-              .then((res) => {
-                res && onLoad();
-              })
-              .then(()=>{
-                document.querySelector('.loading').style.display='none';
-                document.querySelector('#stickirize_food').style.visibility='visible';
-              })
-              .catch((err) => false);
-            })
+  const onLoadContainer = async()=>{
+
+      redrawing();
+      console.log('LOAD')
+     
+     window.onresize = ()=>{
+      if(!isMobile()){
+        redrawing();
+        console.log('RESIZE',{is_mobile:isMobile(),navigator:navigator.userAgent})
+      }
+     }
+
+    screen.orientation.addEventListener("change", (event) => {
+      
+      if(isMobile()) {
+        redrawing();
+        console.log('ORIENTATION_CHANGE',{is_mobile:isMobile(),navigator:navigator.userAgent})
+      }
+     /*  const type = event.target.type;
+      const angle = event.target.angle;
+      console.log(`ScreenOrientation change: ${type}, ${angle} degrees.`); */
+    });
+
+           
     }
 
   const onLoad = async () => {
@@ -215,9 +222,7 @@ function Sticker() {
   return html.node`
   <div id="container_stickirize_food">
          ${Spinner()}
-        <div id="stickirize_food">
-          
-        </div>
+        <div id="stickirize_food"></div>
     </div>
    
 `;
