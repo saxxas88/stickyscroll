@@ -1,4 +1,4 @@
-import { html } from "lighterhtml";
+import { html, render } from "lighterhtml";
 import "@style/food.css";
 
 
@@ -10,19 +10,65 @@ import itemTomato_b from "@assets/food_parts/tomato_b.png";
 import itemCucumber_a from "@assets/food_parts/cucumber_a.png";
 import itemCucumber_b from "@assets/food_parts/cucumber_b.png";
 
+import Spinner from '@components/Spinner';
 import LoremIpsum from "@components/LoremIpsum";
 
 import { useEffect } from "@utils/screwdriver";
 
 function Sticker() {
-  useEffect("#stickirize_food")
-    .then((res) => {
-      res && onLoad();
-    })
-    .catch((err) => false);
+
+  useEffect("#container_stickirize_food")
+  .then((res) => {
+    res && onLoadContainer();
+  })
+  .catch((err) => false);
+
+ 
 
 
-  const onLoad = () => {
+    const onLoadContainer = async()=>{
+
+      window.scrollTo({
+        top: 0,
+        
+    });
+      document.querySelector('.loading').style.display='block';
+      document.querySelector('#stickirize_food').style.visibility='hidden';
+           
+            await render(document.querySelector('#stickirize_food'),Food);     
+            useEffect("#stickirize_food")
+            .then((res) => {
+              res && onLoad();
+            })
+            .then(()=>{
+              document.querySelector('.loading').style.display='none';
+              document.querySelector('#stickirize_food').style.visibility='visible';
+            })
+            .catch((err) => false);
+
+      window.addEventListener('resize',async()=>{
+        document.querySelector('.loading').style.display='block';
+        await render(document.querySelector('#stickirize_food'),html.node``);     
+        document.querySelector('#stickirize_food').style.visibility='hidden';
+              window.scrollTo({
+                  top: 0,
+                  
+              });
+              await render(document.querySelector('#stickirize_food'),Food);     
+              useEffect("#stickirize_food")
+              .then((res) => {
+                res && onLoad();
+              })
+              .then(()=>{
+                document.querySelector('.loading').style.display='none';
+                document.querySelector('#stickirize_food').style.visibility='visible';
+              })
+              .catch((err) => false);
+            })
+    }
+
+  const onLoad = async () => {
+   
     // * containers scrollables    
     // ** container scrollable fixed
     const container_scrollables = document.querySelector(
@@ -48,6 +94,7 @@ function Sticker() {
     // offsets of elements scrollables
     let offsetTopContainer , offsetTopTable, offsetTopToast,offsetTopCheese,offsetTopTomatoA,offsetTopTomatoB,offsetTopCucumberA,offsetTopCucumberB ,limitHeight ;
 
+    let elements = [elem_table,elem_toast,elem_cheese,elem_tomatoA,elem_tomatoB,elem_cucumberA,elem_cucumberB];
 
     let current = 0;
     let target = 0;
@@ -56,7 +103,6 @@ function Sticker() {
     const lerp = (start, end, t) => {
       return start * (1 - t) + end * t;
     };
-
 
     // init containers properties (height,top)
     const initContainers = () => {
@@ -85,22 +131,20 @@ function Sticker() {
      // limits to stop translation
      limitHeight =
      scrollable.getBoundingClientRect().height - scrollable.offsetTop;
+     return true;
     };
-
-    let elements = [elem_table,elem_toast,elem_cheese,elem_tomatoA,elem_tomatoB,elem_cucumberA,elem_cucumberB];
     
     const smoothScroll = () => {
       target = window.scrollY;
-
+       
       current = lerp(current, target, ease);
       container_scrollables.style.transform = `translate3d(0, ${-current}px,0)`;
       stickirize();
       window.requestAnimationFrame(smoothScroll);
     };
     
-
+    
     const stickirize = () => {
-
       //scroll normale
 
       //scroll sticky
@@ -132,47 +176,49 @@ function Sticker() {
     };
 
     initContainers();
-    smoothScroll();
+    smoothScroll(); 
+  
   };
+ 
+  
+  const Food = ()=> html.node`<div class="scrollable_container_copy"></div>
+  <div class="scrollable_container">
+
+    <div class="scrollable">
+        ${LoremIpsum({size:20})}
+     
+        <div id="item_table" class="item">
+                <img src="${itemTable}"  alt="Tree Table" />
+        </div>
+        <div id="item_toast" class="item">
+                <img src="${itemToast}"  alt="Toast" />
+        </div>
+        <div id="item_cheese" class="item">
+                <img src="${itemCheese}"  alt="Slice Cheese" />
+        </div>
+        <div id="item_tomato_a" class="item">
+                <img src="${itemTomato_a}"  alt="Slice Tomato" />
+        </div>
+        <div id="item_tomato_b" class="item">
+                <img src="${itemTomato_b}"  alt="Slice Tomato" />
+        </div>
+        <div id="item_cucumber_a" class="item">
+                <img src="${itemCucumber_a}"  alt="Slice Cucumber" />
+        </div>
+        <div id="item_cucumber_b" class="item">
+                <img src="${itemCucumber_b}"  alt="Slice Cucumber" />
+        </div>
+    </div>
+    
+  </div>`;
 
   return html.node`
-      <section></section>
+  <div id="container_stickirize_food">
+         ${Spinner()}
         <div id="stickirize_food">
-          <div class="scrollable_container_copy"></div>
-          <div class="scrollable_container">
-   
-            <div class="scrollable">
-                ${LoremIpsum()}
-                ${LoremIpsum()}
-                <div id="item_table" class="item">
-                        <img src="${itemTable}"  alt="Tree Table" />
-                </div>
-                <div id="item_toast" class="item">
-                        <img src="${itemToast}"  alt="Toast" />
-                </div>
-                <div id="item_cheese" class="item">
-                        <img src="${itemCheese}"  alt="Slice Cheese" />
-                </div>
-                <div id="item_tomato_a" class="item">
-                        <img src="${itemTomato_a}"  alt="Slice Tomato" />
-                </div>
-                <div id="item_tomato_b" class="item">
-                        <img src="${itemTomato_b}"  alt="Slice Tomato" />
-                </div>
-                <div id="item_cucumber_a" class="item">
-                        <img src="${itemCucumber_a}"  alt="Slice Cucumber" />
-                </div>
-                <div id="item_cucumber_b" class="item">
-                        <img src="${itemCucumber_b}"  alt="Slice Cucumber" />
-                </div>
-            </div>
-            
-          </div>
+          
         </div>
-        <section></section>
-        <section></section>
-        <section></section>
-        <section></section>
+    </div>
    
 `;
 }

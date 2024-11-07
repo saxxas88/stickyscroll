@@ -6,7 +6,7 @@ const Footer = ()=>{
     
     useEffect('footer.food_footer')
     .then(res=>{
-        res && loadvalue()
+        res 
       
     })
     .catch(err=>false)

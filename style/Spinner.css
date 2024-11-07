@@ -1,0 +1,21 @@
+.loading {
+    position: relative;
+    margin: 10px auto;
+    display: none;
+    width: 100px;
+    height: 100px;
+    border: 10px solid var(--nav);
+    border-radius: 50%;
+    border-top-color: var(--icon);
+    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1.5s linear infinite;
+  }
+  
+  @keyframes spin {
+    
+    to { -webkit-transform: rotate(360deg); }
+  }
+  @-webkit-keyframes spin {
+    
+    to { -webkit-transform: rotate(360deg); }
+  }
