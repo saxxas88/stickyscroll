@@ -1,5 +1,5 @@
 import { html, render } from "lighterhtml";
-import "@style/food.css";
+import "@style/food_reverse.css";
 
 
 import itemTable from "@assets/food_parts/wood_plate.png";
@@ -17,7 +17,7 @@ import { useEffect } from "@utils/screwdriver";
 
 function Sticker() {
 
-  useEffect("#container_stickirize_food")
+  useEffect("#container_stickirize_food_r")
   .then((res) => {
     res && onLoadContainer();
   })
@@ -33,17 +33,17 @@ function Sticker() {
     window.scrollTo({
       top: 0
     });
-    document.querySelector('.loading').style.display='block';
-    document.querySelector('#stickirize_food').style.visibility='hidden';
+    document.querySelector('#container_stickirize_food_r .loading').style.display='block';
+    document.querySelector('#container_stickirize_food_r #stickirize_food_r').style.visibility='hidden';
          
-    await render(document.querySelector('#stickirize_food'),Food);     
-    useEffect("#stickirize_food")
+    await render(document.querySelector('#stickirize_food_r'),Food);     
+    useEffect("#stickirize_food_r")
     .then((res) => {
       res && onLoad();
     })
     .then(()=>{
-      document.querySelector('.loading').style.display='none';
-      document.querySelector('#stickirize_food').style.visibility='visible';
+      document.querySelector('#container_stickirize_food_r .loading').style.display='none';
+      document.querySelector('#container_stickirize_food_r #stickirize_food_r').style.visibility='visible';
     })
     .catch((err) => false);
   }
@@ -106,7 +106,7 @@ function Sticker() {
     let current = 0;
     let target = 0;
     const ease = 1;
-
+    let variable = 0;
     const lerp = (start, end, t) => {
       return start * (1 - t) + end * t;
     };
@@ -134,7 +134,7 @@ function Sticker() {
      offsetTopTomatoB = elem_tomatoB.offsetTop + offsetTopContainer;
      offsetTopCucumberA = elem_cucumberA.offsetTop + offsetTopContainer;
      offsetTopCucumberB = elem_cucumberB.offsetTop + offsetTopContainer;
- 
+   
      // limits to stop translation
      limitHeight =
      scrollable.getBoundingClientRect().height - scrollable.offsetTop;
@@ -147,7 +147,7 @@ function Sticker() {
       current = lerp(current, target, ease);
       container_scrollables.style.transform = `translate3d(0, ${-current}px,0)`;
       stickirize();
-      window.requestAnimationFrame(smoothScroll);
+      window.onscroll=smoothScroll;
     };
     
     
@@ -159,23 +159,29 @@ function Sticker() {
 
       elements.forEach((elem,i)=>{
 
-        if (current > 0 && current < (elem.offsetTop + offsetTopContainer))
+        if (current > 0 && current < ( elem.offsetTop + offsetTopContainer))
             elem.style.transform = `translate3d(0,${0}px, 0)`;
 
         if (
             current >= (elem.offsetTop + offsetTopContainer) &&
-            current <= limitHeight - i*100
+            current <= limitHeight + elem.offsetTop - i*100
           ) {
+            
             elem.style.transform = `translate3d(0,${Number(
-              current - (elem.offsetTop + offsetTopContainer)
-            ).toFixed(2)}px, 0)`;
+                current - (elem.offsetTop + offsetTopContainer ) 
+              ).toFixed(2)}px, 0)`;
+              variable = 0;
           }
 
-          /* if (
-            current > elem.offsetTop + offsetTopContainer + (i*100)
+           if (
+            current > limitHeight + elem.offsetTop - i*100
           ) {
             // ??????
-          } */
+           variable= variable + 50;
+            elem.style.transform = `translate3d(0,${Number(
+                current  - (elem.offsetTop + offsetTopContainer - variable ) 
+              ).toFixed(2)}px, 0)`;
+          } 
       });
     
      
@@ -192,7 +198,7 @@ function Sticker() {
   <div class="scrollable_container">
 
     <div class="scrollable">
-        ${LoremIpsum({size:30})}
+        ${LoremIpsum({size:20})}
      
         <div id="item_table" class="item">
                 <img src="${itemTable}"  alt="Tree Table" />
@@ -220,9 +226,9 @@ function Sticker() {
   </div>`;
 
   return html.node`
-  <div id="container_stickirize_food">
+  <div id="container_stickirize_food_r">
          ${Spinner()}
-        <div id="stickirize_food"></div>
+        <div id="stickirize_food_r"></div>
     </div>
    
 `;

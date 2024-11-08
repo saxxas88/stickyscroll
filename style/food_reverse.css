@@ -1,0 +1,117 @@
+#container_stickirize_food_r{
+    position: relative;
+  }
+  #container_stickirize_food_r .loading{
+    position: absolute;
+    top: 0;
+    inset: 0;
+  }
+  
+  #stickirize_food_r h2,
+  #stickirize_food_r p{
+      color: var(--text);
+  }
+  
+  #stickirize_food_r .scrollable_container_copy {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      top: 0;
+      background-image: url('@assets/food_parts/table-texture.jpg');
+      background-size: contain;
+      background-repeat: repeat;
+      background-position: center top;
+      background-attachment: fixed;
+      z-index: -100;
+    }
+  
+    #stickirize_food_r .scrollable_container_copy::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 50px;
+      position: relative;
+      background: linear-gradient(180deg, var(--body) 0%, rgba(255, 255, 255, 0) 100%);
+      top: 0;
+    }
+    #stickirize_food_r .scrollable_container_copy::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 50px;
+      position: relative;
+      background: linear-gradient(0deg, var(--body) 0%, rgba(255, 255, 255, 0) 100%);
+      top: calc(100% - 100px);
+    }
+  
+    #stickirize_food_r .scrollable_container {
+      position: fixed;
+      width: 100%;
+      min-height: 100vh;
+      top:0;
+      /* background-color: rgb(46, 46, 46); */
+      
+    }
+    
+    #stickirize_food_r .scrollable {
+      position: relative;
+      top: 0;
+      min-height: 100vh;
+      /* background-color: #333446; */
+   
+    /*   border: 1px solid #ffffff; */
+    }
+    
+    #stickirize_food_r div.item {
+      position: absolute;
+      width: 100%;
+      margin: 0 auto;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    #stickirize_food_r div#item_table {
+      top: 0vh;
+      z-index: 1;
+    }
+    #stickirize_food_r div#item_toast {
+      top: 20vh;
+      z-index: 2;
+    }
+    #stickirize_food_r div#item_cheese {
+      top: 40vh;
+      z-index: 3;
+    }
+    #stickirize_food_r div#item_tomato_a {
+      top: 50vh;
+      z-index: 4;
+    }
+    #stickirize_food_r div#item_tomato_b {
+      top: 60vh;
+      z-index: 5;
+    }
+    #stickirize_food_r div#item_cucumber_a {
+      top: 70vh;
+      z-index: 6;
+    }
+    #stickirize_food_r div#item_cucumber_b {
+      top: 80vh;
+      z-index: 7;
+    }
+  
+    #stickirize_food_r .item img {
+      width: clamp(290px,100vw, 500px);
+      position: relative;
+    }
+  
+    @media only screen and (max-height: 600px){
+      #stickirize_food_r .item img {
+        width: clamp(290px,90vh, 500px);
+      }
+    }
+    
+    
+    /********************************/
+    

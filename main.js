@@ -6,7 +6,7 @@ import Stickerz from '@components/Stickerz';*/
  /*  import Tutorial1 from '@components/Tutorial1';  
  import Tutorial2 from '@components/Tutorial2';   */
  import Food from '@components/Food';
-
+/*  import FoodReverse from '@components/FoodReverse'; */
  import FoodFooter from '@components/FoodFooter';
  import FoodNavbar from '@components/NavFooter';
 
@@ -17,6 +17,7 @@ function App(){
         html.node`
         ${FoodNavbar()}
         <section></section>
+           
             ${Food()}
         <section></section>
         <section></section>

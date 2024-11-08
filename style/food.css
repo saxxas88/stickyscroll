@@ -102,11 +102,15 @@
   }
 
   #stickirize_food .item img {
-    width: clamp(290px,100vw, 600px);
+    width: clamp(290px,100vw, 500px);
     position: relative;
   }
 
- 
+  @media only screen and (max-height: 600px){
+    #stickirize_food .item img {
+      width: clamp(290px,90vh, 500px);
+    }
+  }
   
   
   /********************************/
